@@ -1,0 +1,1357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alexander Mechanical – Marlborough & Beyond</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --black: #0d0d0b;
+      --dark: #141410;
+      --mid: #1e1e18;
+      --steel: #2a2a22;
+      --rust: #c8651a;
+      --amber: #e8891e;
+      --gold: #f5a623;
+      --cream: #f0ead8;
+      --grey: #8a8a7a;
+      --light-grey: #b8b8a8;
+      --white: #f8f5ee;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--black);
+      color: var(--cream);
+      font-family: 'Barlow', sans-serif;
+      font-weight: 400;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4vw;
+      height: 64px;
+      background: rgba(13,13,11,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(232,137,30,0.12);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.5rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--amber); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--light-grey);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--amber); }
+
+    .nav-cta {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--amber);
+      border: none;
+      padding: 0.55rem 1.4rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--gold); }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--cream);
+      transition: all 0.3s;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 120px 4vw 80px 6vw;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 8vw, 8.5rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      margin-bottom: 1.8rem;
+    }
+    .hero-title .line-accent { color: var(--amber); }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--light-grey);
+      max-width: 440px;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--amber);
+      border: none;
+      padding: 0.85rem 2rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--gold); transform: translateY(-1px); }
+
+    .btn-secondary {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      background: transparent;
+      border: 1px solid rgba(240,234,216,0.25);
+      padding: 0.85rem 2rem;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--amber); color: var(--amber); }
+
+    .hero-stats {
+      display: flex;
+      gap: 2.5rem;
+      margin-top: 3.5rem;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem;
+      color: var(--amber);
+      display: block;
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-graphic {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(135deg, rgba(200,101,26,0.15) 0%, transparent 50%),
+        linear-gradient(to right, var(--black) 0%, transparent 40%),
+        repeating-linear-gradient(
+          -45deg,
+          transparent,
+          transparent 2px,
+          rgba(232,137,30,0.03) 2px,
+          rgba(232,137,30,0.03) 4px
+        );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Giant gear SVG */
+    .gear-bg {
+      width: min(520px, 90%);
+      opacity: 0.12;
+      animation: spin 60s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .gear-front {
+      position: absolute;
+      width: min(260px, 50%);
+      opacity: 0.35;
+      animation: spin 25s linear infinite reverse;
+      bottom: 15%;
+      right: 8%;
+    }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 100px 6vw; }
+
+    .section-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--amber);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.6rem, 5vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: 0.03em;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+
+    /* ── ABOUT ── */
+    #about {
+      background: var(--dark);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6vw;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--light-grey);
+      font-weight: 300;
+      font-size: 1.02rem;
+      line-height: 1.8;
+      margin-top: 1.2rem;
+    }
+    .about-text strong { color: var(--cream); font-weight: 600; }
+
+    .about-highlights {
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .highlight-card {
+      background: var(--mid);
+      border-left: 3px solid var(--amber);
+      padding: 1.4rem 1.6rem;
+      transition: transform 0.2s;
+    }
+    .highlight-card:hover { transform: translateX(4px); }
+    .highlight-card h4 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .highlight-card p {
+      font-size: 0.9rem;
+      color: var(--grey);
+      font-weight: 300;
+    }
+
+    /* ── SERVICES ── */
+    #services {
+      background: var(--black);
+    }
+
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 3.5rem;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .service-card {
+      background: var(--black);
+      padding: 2.5rem 2rem;
+      position: relative;
+      overflow: hidden;
+      transition: background 0.3s;
+      cursor: default;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--amber);
+      transition: width 0.4s ease;
+    }
+    .service-card:hover { background: var(--mid); }
+    .service-card:hover::before { width: 100%; }
+
+    .service-icon {
+      font-size: 2.2rem;
+      margin-bottom: 1.2rem;
+      display: block;
+    }
+
+    .service-card h3 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 0.7rem;
+    }
+    .service-card p {
+      font-size: 0.88rem;
+      color: var(--grey);
+      font-weight: 300;
+      line-height: 1.65;
+    }
+
+    .service-badge {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--amber);
+      border: 1px solid var(--amber);
+      padding: 0.2rem 0.5rem;
+    }
+
+    /* ── VEHICLES ── */
+    #vehicles {
+      background: var(--dark);
+      overflow: hidden;
+    }
+
+    .vehicles-header { margin-bottom: 3rem; }
+
+    .vehicle-ticker {
+      display: flex;
+      gap: 0;
+      overflow: hidden;
+      position: relative;
+      margin-top: 2rem;
+    }
+    .vehicle-ticker::before, .vehicle-ticker::after {
+      content: '';
+      position: absolute;
+      top: 0; bottom: 0;
+      width: 80px;
+      z-index: 2;
+    }
+    .vehicle-ticker::before { left: 0; background: linear-gradient(to right, var(--dark), transparent); }
+    .vehicle-ticker::after { right: 0; background: linear-gradient(to left, var(--dark), transparent); }
+
+    .ticker-track {
+      display: flex;
+      gap: 1.5rem;
+      animation: ticker 30s linear infinite;
+      white-space: nowrap;
+    }
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    .vehicle-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: var(--mid);
+      border: 1px solid rgba(255,255,255,0.06);
+      padding: 0.9rem 1.6rem;
+      flex-shrink: 0;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .vehicle-pill:hover {
+      border-color: var(--amber);
+      background: var(--steel);
+    }
+    .vehicle-pill .pill-icon { font-size: 1.2rem; }
+    .vehicle-pill .pill-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--light-grey);
+    }
+
+    .vehicles-desc {
+      margin-top: 3rem;
+      max-width: 700px;
+    }
+    .vehicles-desc p {
+      font-size: 1.05rem;
+      font-weight: 300;
+      color: var(--light-grey);
+      line-height: 1.75;
+    }
+    .vehicles-desc p + p { margin-top: 1rem; }
+    .vehicles-desc strong { color: var(--cream); }
+
+    /* ── AREA ── */
+    #area {
+      background: var(--black);
+    }
+
+    .area-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6vw;
+      align-items: start;
+    }
+
+    .area-regions {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .region-row {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.2rem 1.4rem;
+      background: var(--mid);
+      border: 1px solid rgba(255,255,255,0.04);
+      transition: border-color 0.2s;
+    }
+    .region-row:hover { border-color: rgba(232,137,30,0.3); }
+
+    .region-dot {
+      width: 10px; height: 10px;
+      border-radius: 50%;
+      background: var(--amber);
+      flex-shrink: 0;
+    }
+    .region-dot.secondary { background: var(--rust); opacity: 0.6; }
+
+    .region-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .region-tag {
+      margin-left: auto;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .area-note {
+      margin-top: 2rem;
+    }
+    .area-note p {
+      font-size: 0.92rem;
+      font-weight: 300;
+      color: var(--grey);
+      line-height: 1.7;
+    }
+
+    /* ── REVIEWS ── */
+    #reviews {
+      background: var(--dark);
+    }
+
+    .reviews-header {
+      margin-bottom: 3rem;
+    }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .review-card {
+      background: var(--mid);
+      padding: 2rem;
+      position: relative;
+      border-top: 2px solid transparent;
+      transition: border-color 0.3s;
+    }
+    .review-card:hover { border-top-color: var(--amber); }
+
+    .review-quote {
+      font-size: 3rem;
+      line-height: 1;
+      color: var(--amber);
+      opacity: 0.4;
+      font-family: Georgia, serif;
+      margin-bottom: 0.5rem;
+    }
+
+    .review-text {
+      font-size: 0.96rem;
+      font-weight: 300;
+      color: var(--light-grey);
+      line-height: 1.75;
+      font-style: italic;
+      margin-bottom: 1.5rem;
+    }
+
+    .review-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .review-author strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+    .review-author span {
+      font-size: 0.78rem;
+      color: var(--grey);
+    }
+
+    .review-stars {
+      color: var(--amber);
+      font-size: 0.9rem;
+      letter-spacing: 0.1em;
+    }
+
+    .review-vehicle-tag {
+      display: inline-block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--rust);
+      border: 1px solid rgba(200,101,26,0.35);
+      padding: 0.2rem 0.55rem;
+      margin-bottom: 1rem;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      background: var(--black);
+    }
+
+    .contact-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6vw;
+      align-items: start;
+    }
+
+    .contact-left p {
+      font-size: 1.02rem;
+      font-weight: 300;
+      color: var(--light-grey);
+      line-height: 1.8;
+      margin-top: 1rem;
+      max-width: 420px;
+    }
+
+    .contact-methods {
+      margin-top: 2.5rem;
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+    }
+    .contact-method .icon-wrap {
+      width: 44px; height: 44px;
+      background: var(--mid);
+      border: 1px solid rgba(232,137,30,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-method .method-details strong {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+      margin-bottom: 0.15rem;
+    }
+    .contact-method .method-details a,
+    .contact-method .method-details span {
+      font-size: 0.98rem;
+      font-weight: 500;
+      color: var(--cream);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-method .method-details a:hover { color: var(--amber); }
+
+    /* Form */
+    .contact-form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .form-group label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--grey);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      background: var(--mid);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--cream);
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      padding: 0.85rem 1rem;
+      outline: none;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-group select option { background: var(--mid); }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--amber);
+    }
+    .form-group textarea { resize: vertical; min-height: 130px; }
+
+    .form-submit {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--black);
+      background: var(--amber);
+      border: none;
+      padding: 1rem 2rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      margin-top: 0.5rem;
+    }
+    .form-submit:hover { background: var(--gold); transform: translateY(-1px); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 3rem 6vw;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--amber); }
+
+    .footer-nav {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .footer-nav a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--grey);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-nav a:hover { color: var(--amber); }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--grey);
+      font-weight: 300;
+    }
+
+    /* ── DIVIDER ── */
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(to right, transparent, rgba(232,137,30,0.2), transparent);
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* ── MOBILE ── */
+    @media (max-width: 900px) {
+      #hero { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .hero-left { padding: 100px 6vw 60px; }
+
+      #about, .area-inner, .contact-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links, .nav-cta { display: none; }
+      .hamburger { display: flex; }
+
+      section { padding: 70px 6vw; }
+
+      .form-row { grid-template-columns: 1fr; }
+
+      footer { flex-direction: column; align-items: flex-start; }
+      .footer-nav { flex-wrap: wrap; gap: 1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">Alexander <span>Mechanical</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#vehicles">Vehicles</a></li>
+      <li><a href="#area">Service Area</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get a Quote</a>
+    <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Marlborough · Tasman · Canterbury</p>
+      <h1 class="hero-title">
+        Built<br>
+        <span class="line-accent">On</span><br>
+        Engines
+      </h1>
+      <p class="hero-desc">
+        If it's got an engine, Alexander Mechanical can fix it, tune it, or breathe new life into it.
+        Expert mechanical services from Marlborough to Canterbury — on the road, the track, or the farm.
+      </p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn-primary">Book a Service</a>
+        <a href="#services" class="btn-secondary">What We Do</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <span class="stat-num">20+</span>
+          <span class="stat-label">Years Experience</span>
+        </div>
+        <div>
+          <span class="stat-num">Any</span>
+          <span class="stat-label">Engine Type</span>
+        </div>
+        <div>
+          <span class="stat-num">3</span>
+          <span class="stat-label">Regions Covered</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-graphic">
+        <svg class="gear-bg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M100 15l8 20h22l-17 13 6 21-19-13-19 13 6-21-17-13h22z" fill="#e8891e"/>
+          <circle cx="100" cy="100" r="72" stroke="#e8891e" stroke-width="6" fill="none"/>
+          <circle cx="100" cy="100" r="55" stroke="#e8891e" stroke-width="2" fill="none" stroke-dasharray="6 4"/>
+          <circle cx="100" cy="100" r="28" fill="none" stroke="#e8891e" stroke-width="5"/>
+          <circle cx="100" cy="100" r="12" fill="#e8891e"/>
+          <!-- gear teeth -->
+          <rect x="93" y="10" width="14" height="22" rx="2" fill="#e8891e"/>
+          <rect x="93" y="168" width="14" height="22" rx="2" fill="#e8891e"/>
+          <rect x="10" y="93" width="22" height="14" rx="2" fill="#e8891e"/>
+          <rect x="168" y="93" width="22" height="14" rx="2" fill="#e8891e"/>
+          <g transform="rotate(45 100 100)">
+            <rect x="93" y="10" width="14" height="22" rx="2" fill="#e8891e"/>
+            <rect x="93" y="168" width="14" height="22" rx="2" fill="#e8891e"/>
+            <rect x="10" y="93" width="22" height="14" rx="2" fill="#e8891e"/>
+            <rect x="168" y="93" width="22" height="14" rx="2" fill="#e8891e"/>
+          </g>
+          <g transform="rotate(22.5 100 100)">
+            <rect x="93" y="10" width="14" height="22" rx="2" fill="#e8891e"/>
+            <rect x="93" y="168" width="14" height="22" rx="2" fill="#e8891e"/>
+            <rect x="10" y="93" width="22" height="14" rx="2" fill="#e8891e"/>
+            <rect x="168" y="93" width="22" height="14" rx="2" fill="#e8891e"/>
+          </g>
+          <g transform="rotate(67.5 100 100)">
+            <rect x="93" y="10" width="14" height="22" rx="2" fill="#e8891e"/>
+            <rect x="93" y="168" width="14" height="22" rx="2" fill="#e8891e"/>
+            <rect x="10" y="93" width="22" height="14" rx="2" fill="#e8891e"/>
+            <rect x="168" y="93" width="22" height="14" rx="2" fill="#e8891e"/>
+          </g>
+          <line x1="100" y1="45" x2="100" y2="155" stroke="#e8891e" stroke-width="1.5" opacity="0.4"/>
+          <line x1="45" y1="100" x2="155" y2="100" stroke="#e8891e" stroke-width="1.5" opacity="0.4"/>
+          <line x1="60" y1="60" x2="140" y2="140" stroke="#e8891e" stroke-width="1.5" opacity="0.4"/>
+          <line x1="140" y1="60" x2="60" y2="140" stroke="#e8891e" stroke-width="1.5" opacity="0.4"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="about-text fade-up">
+      <p class="section-label">About</p>
+      <h2 class="section-title">A Career Spent Under the Hood</h2>
+      <p>Alexander Mechanical is a <strong>mobile and workshop mechanical service</strong> based in the Marlborough region. With a career built from the ground up working on everything from weekend trail bikes to high-performance speedway machines, we bring <strong>real-world expertise</strong> to every job.</p>
+      <p>Whether you're broken down in the Wairau Valley, need your tractor serviced before harvest, or want your rally car properly dialled in before race day — we'll get the job done properly.</p>
+    </div>
+    <div class="about-highlights fade-up">
+      <div class="highlight-card">
+        <h4>Experienced & Versatile</h4>
+        <p>Decades of hands-on experience across every engine type — two-stroke, diesel, petrol, marine, and more.</p>
+      </div>
+      <div class="highlight-card">
+        <h4>Performance-Ready</h4>
+        <p>Race-day tuning and preparation for speedway, rally, and track vehicles. We know what winning cars need.</p>
+      </div>
+      <div class="highlight-card">
+        <h4>Farm & Fleet</h4>
+        <p>Tractor and agricultural machinery servicing to keep your property running through every season.</p>
+      </div>
+      <div class="highlight-card">
+        <h4>Honest Workmanship</h4>
+        <p>Straight-talking, no-bullshit mechanical work. You'll know exactly what's happening and why.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="services-header">
+      <div>
+        <p class="section-label">What We Do</p>
+        <h2 class="section-title">Services</h2>
+      </div>
+    </div>
+    <div class="services-grid fade-up">
+      <div class="service-card">
+        <span class="service-icon">🔧</span>
+        <h3>General Repairs</h3>
+        <p>Breakdowns, fault diagnosis, worn parts, and everything in between. We figure out what's wrong and fix it properly.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">📋</span>
+        <h3>Warrant of Fitness Prep</h3>
+        <p>Get your vehicle road-ready. We identify and resolve issues before your WoF inspection.</p>
+        <span class="service-badge">Popular</span>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🛠️</span>
+        <h3>Full Services & Tune-ups</h3>
+        <p>Scheduled servicing, oil changes, filters, belts, fluids — keeping your vehicle running at its best for longer.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">⚙️</span>
+        <h3>Engine Rebuilds</h3>
+        <p>Top-end and full engine rebuilds across all vehicle types. Breathing new life into tired or damaged engines.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏁</span>
+        <h3>Performance Tuning</h3>
+        <p>Extracting maximum performance from rally cars, speedway vehicles, and anything you want to go faster.</p>
+        <span class="service-badge">Specialist</span>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🚜</span>
+        <h3>Agricultural & Tractor</h3>
+        <p>On-farm tractor and machinery servicing. Minimise downtime during critical periods like harvest.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">⛵</span>
+        <h3>Marine Engines</h3>
+        <p>Inboard, outboard, and jet boat engine servicing and repairs. Ready for the Marlborough Sounds.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🔍</span>
+        <h3>Pre-Purchase Inspections</h3>
+        <p>Buying a used vehicle or machine? Get an expert eye over it before you commit.</p>
+      </div>
+      <div class="service-card">
+        <span class="service-icon">🏍️</span>
+        <h3>Motorbike Servicing</h3>
+        <p>Road bikes, trail bikes, and race bikes. Full service and repair capability across all makes.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- VEHICLES -->
+  <section id="vehicles">
+    <div class="vehicles-header fade-up">
+      <p class="section-label">What We Work On</p>
+      <h2 class="section-title">If It's Got an Engine,<br>We Can Help</h2>
+    </div>
+
+    <!-- Ticker -->
+    <div class="vehicle-ticker">
+      <div class="ticker-track" id="tickerTrack">
+        <!-- JS will duplicate these -->
+        <div class="vehicle-pill"><span class="pill-icon">🏍️</span><span class="pill-name">Motorbikes</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🚗</span><span class="pill-name">Cars</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🚛</span><span class="pill-name">Trucks</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🚜</span><span class="pill-name">Tractors</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">⛵</span><span class="pill-name">Boats</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🏁</span><span class="pill-name">Rally Cars</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🏎️</span><span class="pill-name">Speedway Cars</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🚐</span><span class="pill-name">Vans</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🌾</span><span class="pill-name">Farm Machinery</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🛻</span><span class="pill-name">Utes</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🚤</span><span class="pill-name">Jet Boats</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🏗️</span><span class="pill-name">Heavy Equipment</span></div>
+        <!-- Duplicated for infinite scroll -->
+        <div class="vehicle-pill"><span class="pill-icon">🏍️</span><span class="pill-name">Motorbikes</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🚗</span><span class="pill-name">Cars</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🚛</span><span class="pill-name">Trucks</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🚜</span><span class="pill-name">Tractors</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">⛵</span><span class="pill-name">Boats</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🏁</span><span class="pill-name">Rally Cars</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🏎️</span><span class="pill-name">Speedway Cars</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🚐</span><span class="pill-name">Vans</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🌾</span><span class="pill-name">Farm Machinery</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🛻</span><span class="pill-name">Utes</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🚤</span><span class="pill-name">Jet Boats</span></div>
+        <div class="vehicle-pill"><span class="pill-icon">🏗️</span><span class="pill-name">Heavy Equipment</span></div>
+      </div>
+    </div>
+
+    <div class="vehicles-desc fade-up">
+      <p>From a Sunday morning quad bike to a <strong>full race-prepared speedway car</strong>, the variety of machines we've worked on is as wide as the Top of the South.</p>
+      <p>Not sure if we can help with your specific vehicle? <a href="#contact" style="color: var(--amber); text-decoration: none; font-weight: 500;">Just ask</a> — if it runs on fuel and has moving parts, we've probably seen it before.</p>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- SERVICE AREA -->
+  <section id="area">
+    <div class="area-inner">
+      <div class="fade-up">
+        <p class="section-label">Where We Work</p>
+        <h2 class="section-title">Service Area</h2>
+        <div class="area-regions" style="margin-top: 2rem;">
+          <div class="region-row">
+            <div class="region-dot"></div>
+            <span class="region-name">Marlborough</span>
+            <span class="region-tag">Primary Region</span>
+          </div>
+          <div class="region-row">
+            <div class="region-dot secondary"></div>
+            <span class="region-name">Tasman</span>
+            <span class="region-tag">Also Covered</span>
+          </div>
+          <div class="region-row">
+            <div class="region-dot secondary"></div>
+            <span class="region-name">Canterbury</span>
+            <span class="region-tag">Also Covered</span>
+          </div>
+        </div>
+        <div class="area-note">
+          <p>Based in Marlborough and servicing the wider Top of the South Island. We're also happy to discuss travel for larger jobs or ongoing commercial contracts.</p>
+          <p style="margin-top: 0.8rem;"><a href="#contact" style="color: var(--amber); text-decoration: none; font-weight: 500;">Get in touch</a> to confirm availability in your area.</p>
+        </div>
+      </div>
+      <div class="fade-up">
+        <!-- Simple SVG map of the South Island top -->
+        <svg viewBox="0 0 380 460" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width: 380px; opacity: 0.85;">
+          <!-- Simplified South Island outline top section -->
+          <path d="M110 20 L140 15 L175 22 L210 18 L245 28 L268 40 L280 60 L290 80 L295 105 L285 130 L275 155 L265 178 L260 200 L268 220 L275 245 L265 268 L250 285 L235 300 L215 315 L195 328 L175 340 L155 350 L135 358 L115 360 L95 350 L80 335 L70 315 L65 295 L68 275 L75 255 L72 235 L65 215 L60 195 L55 175 L52 155 L55 130 L65 110 L72 88 L80 68 L90 48 L100 32 Z" fill="rgba(30,30,24,0.8)" stroke="rgba(232,137,30,0.3)" stroke-width="1.5"/>
+
+          <!-- Marlborough region highlight -->
+          <path d="M200 18 L245 28 L268 40 L280 60 L290 80 L295 105 L285 130 L275 155 L260 145 L245 130 L230 120 L215 108 L200 95 L185 82 L175 65 L180 45 L190 30 Z" fill="rgba(232,137,30,0.18)" stroke="rgba(232,137,30,0.4)" stroke-width="1"/>
+          <!-- Tasman region -->
+          <path d="M100 32 L140 15 L180 22 L190 30 L180 45 L175 65 L165 80 L150 92 L135 100 L120 108 L105 112 L90 108 L78 95 L72 80 L75 60 L85 45 Z" fill="rgba(200,101,26,0.12)" stroke="rgba(200,101,26,0.3)" stroke-width="1"/>
+
+          <!-- Region labels -->
+          <text x="235" y="90" font-family="'Barlow Condensed', sans-serif" font-size="13" font-weight="700" fill="#e8891e" letter-spacing="1" text-anchor="middle">MARLBOROUGH</text>
+          <text x="130" y="75" font-family="'Barlow Condensed', sans-serif" font-size="11" font-weight="700" fill="rgba(200,101,26,0.8)" letter-spacing="1" text-anchor="middle">TASMAN</text>
+
+          <!-- Canterbury lower -->
+          <path d="M250 285 L265 268 L275 245 L265 220 L258 210 L245 220 L230 235 L218 252 L208 268 L200 285 L195 300 L205 315 L215 315 L235 300 Z" fill="rgba(200,101,26,0.1)" stroke="rgba(200,101,26,0.25)" stroke-width="1"/>
+          <text x="230" y="265" font-family="'Barlow Condensed', sans-serif" font-size="11" font-weight="700" fill="rgba(200,101,26,0.7)" letter-spacing="1" text-anchor="middle">CANTERBURY</text>
+
+          <!-- Blenheim dot -->
+          <circle cx="248" cy="115" r="5" fill="#e8891e"/>
+          <text x="260" y="113" font-family="'Barlow Condensed', sans-serif" font-size="10" fill="rgba(240,234,216,0.7)" letter-spacing="0.5">Blenheim</text>
+
+          <!-- Nelson dot -->
+          <circle cx="148" cy="88" r="4" fill="rgba(200,101,26,0.8)"/>
+          <text x="158" y="86" font-family="'Barlow Condensed', sans-serif" font-size="9" fill="rgba(240,234,216,0.6)" letter-spacing="0.5">Nelson</text>
+
+          <!-- Compass rose -->
+          <g transform="translate(42, 405)">
+            <line x1="0" y1="-18" x2="0" y2="18" stroke="rgba(232,137,30,0.4)" stroke-width="1"/>
+            <line x1="-18" y1="0" x2="18" y2="0" stroke="rgba(232,137,30,0.4)" stroke-width="1"/>
+            <polygon points="0,-18 -4,-8 4,-8" fill="#e8891e"/>
+            <text x="0" y="-22" font-family="'Barlow Condensed', sans-serif" font-size="9" fill="#e8891e" text-anchor="middle" letter-spacing="1">N</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- REVIEWS -->
+  <section id="reviews">
+    <div class="reviews-header fade-up">
+      <p class="section-label">Testimonials</p>
+      <h2 class="section-title">What People Say</h2>
+    </div>
+    <div class="reviews-grid fade-up">
+
+      <div class="review-card">
+        <span class="review-vehicle-tag">Rally Car</span>
+        <div class="review-quote">"</div>
+        <p class="review-text">Had my rally car prepared before the season and it ran flawlessly all year. Attention to detail is second to none — he found a gearbox issue I'd been ignoring for months and sorted it properly.</p>
+        <div class="review-footer">
+          <div class="review-author">
+            <strong>Mike T.</strong>
+            <span>Marlborough Rally Club</span>
+          </div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <span class="review-vehicle-tag">Tractor</span>
+        <div class="review-quote">"</div>
+        <p class="review-text">Our old Massey broke down two days before harvest. He came out same day, had the parts sourced and fitted within 24 hours. Saved us a fortune in delays. Wouldn't go anywhere else for farm machinery now.</p>
+        <div class="review-footer">
+          <div class="review-author">
+            <strong>Sarah & Dave K.</strong>
+            <span>Wairau Valley</span>
+          </div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+      </div>
+
+      <div class="review-card">
+        <span class="review-vehicle-tag">Boat</span>
+        <div class="review-quote">"</div>
+        <p class="review-text">Couldn't get my jet boat running properly for two seasons. One visit and the problem was diagnosed and fixed. Honest about pricing and didn't charge me for anything unnecessary. Great bloke to deal with.</p>
+        <div class="review-footer">
+          <div class="review-author">
+            <strong>James R.</strong>
+            <span>Picton</span>
+          </div>
+          <div class="review-stars">★★★★★</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider"></div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-inner">
+      <div class="contact-left fade-up">
+        <p class="section-label">Get in Touch</p>
+        <h2 class="section-title">Let's Talk About Your Vehicle</h2>
+        <p>Whether it's a quick question or you're ready to book, get in touch. We'll get back to you as soon as we can.</p>
+
+        <div class="contact-methods">
+          <div class="contact-method">
+            <div class="icon-wrap">📞</div>
+            <div class="method-details">
+              <strong>Phone</strong>
+              <a href="tel:+6400000000">021 000 0000</a>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="icon-wrap">✉️</div>
+            <div class="method-details">
+              <strong>Email</strong>
+              <a href="mailto:info@alexandermechanical.co.nz">info@alexandermechanical.co.nz</a>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="icon-wrap">📍</div>
+            <div class="method-details">
+              <strong>Based In</strong>
+              <span>Marlborough, New Zealand</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fade-up">
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" placeholder="John Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">Phone</label>
+              <input type="tel" id="phone" name="phone" placeholder="021 000 0000" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="vehicle">Vehicle Type</label>
+            <select id="vehicle" name="vehicle">
+              <option value="">Select a vehicle type...</option>
+              <option>Car</option>
+              <option>Ute / 4WD</option>
+              <option>Truck / Van</option>
+              <option>Motorbike</option>
+              <option>Tractor / Farm Machinery</option>
+              <option>Boat / Marine</option>
+              <option>Rally / Race Car</option>
+              <option>Speedway Car</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="service">Service Required</label>
+            <select id="service" name="service">
+              <option value="">What do you need?</option>
+              <option>General Repair / Fault</option>
+              <option>Scheduled Service</option>
+              <option>WoF Preparation</option>
+              <option>Engine Rebuild</option>
+              <option>Performance Tuning</option>
+              <option>Pre-Purchase Inspection</option>
+              <option>Not Sure – Need a Look</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Details</label>
+            <textarea id="message" name="message" placeholder="Tell us about your vehicle and what's going on..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Enquiry →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Alexander <span>Mechanical</span></div>
+    <ul class="footer-nav">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#vehicles">Vehicles</a></li>
+      <li><a href="#area">Area</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Alexander Mechanical · Marlborough, NZ</p>
+  </footer>
+
+  <script>
+    // ── Scroll fade animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          // stagger children
+          e.target.querySelectorAll('.service-card, .highlight-card, .review-card, .region-row').forEach((el, i) => {
+            el.style.transitionDelay = `${i * 80}ms`;
+            el.classList.add('fade-up', 'visible');
+          });
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // ── Form submit
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = 'Sent! We\'ll be in touch ✓';
+      btn.style.background = '#2a6e2a';
+      btn.style.color = '#f0ead8';
+      setTimeout(() => {
+        btn.textContent = 'Send Enquiry →';
+        btn.style.background = '';
+        btn.style.color = '';
+        e.target.reset();
+      }, 4000);
+    }
+
+    // ── Mobile menu (simple toggle)
+    let menuOpen = false;
+    function toggleMobileMenu() {
+      menuOpen = !menuOpen;
+      const nav = document.querySelector('nav');
+      if (menuOpen) {
+        const mobileMenu = document.createElement('div');
+        mobileMenu.id = 'mobile-menu';
+        mobileMenu.style.cssText = `
+          position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+          background: rgba(13,13,11,0.97);
+          border-bottom: 1px solid rgba(232,137,30,0.15);
+          padding: 1.5rem 6vw 2rem;
+          display: flex; flex-direction: column; gap: 1.2rem;
+        `;
+        ['About', 'Services', 'Vehicles', 'Area', 'Reviews', 'Contact'].forEach(label => {
+          const a = document.createElement('a');
+          a.href = `#${label.toLowerCase()}`;
+          a.textContent = label;
+          a.style.cssText = `
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.8rem;
+            letter-spacing: 0.06em;
+            color: #f0ead8;
+            text-decoration: none;
+          `;
+          a.onclick = () => { document.getElementById('mobile-menu')?.remove(); menuOpen = false; };
+          mobileMenu.appendChild(a);
+        });
+        document.body.appendChild(mobileMenu);
+      } else {
+        document.getElementById('mobile-menu')?.remove();
+      }
+    }
+  </script>
+</body>
+</html>
