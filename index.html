@@ -1175,134 +1175,39 @@
           <p style="margin-top: 0.8rem;"><a href="#contact" style="color: var(--amber); text-decoration: none; font-weight: 500;">Get in touch</a> to confirm availability in your area.</p>
         </div>
       </div>
-      <div class="fade-up">
-        <!--
-          Top of the South Island map — SVG coordinate space 400×480
-          Coastline traced from actual geography:
-          - West coast: Farewell Spit curves NE, Golden Bay, Tasman coast south
-          - North coast: Cook Strait, Marlborough Sounds' complex inlets
-          - East coast: Kaikōura coast running SW
-          Key landmarks: Nelson, Blenheim, Picton, Farewell Spit, the Sounds
-        -->
-        <svg viewBox="0 0 400 480" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; max-width: 400px; opacity: 0.9;">
-          <defs>
-            <clipPath id="mapClip"><rect width="400" height="480"/></clipPath>
-          </defs>
+      <div class="fade-up" style="position: relative; max-width: 400px;">
+        <div style="position: relative; display: inline-block; width: 100%;">
+          <img src="map.png" alt="Top of the South Island — Marlborough, Tasman, Canterbury service area" style="width: 100%; display: block; filter: invert(1) sepia(1) saturate(2) hue-rotate(10deg) brightness(0.75); opacity: 0.7; mix-blend-mode: normal;" />
+          <!-- Labels & dots overlaid via absolute SVG -->
+          <svg viewBox="0 0 414 497" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" xmlns="http://www.w3.org/2000/svg">
+          <!-- City dots & labels — coordinates matched to the actual image -->
+          <!-- Blenheim (mid-right, inland from the Sounds) -->
+          <circle cx="310" cy="148" r="5" fill="#e8891e"/>
+          <circle cx="310" cy="148" r="9" fill="none" stroke="#e8891e" stroke-width="1" opacity="0.3"/>
+          <text x="322" y="146" font-family="'Barlow Condensed', sans-serif" font-size="11" font-weight="700" fill="rgba(240,234,216,0.9)" letter-spacing="0.5">Blenheim</text>
 
-          <!-- ── SOUTH ISLAND BODY (top portion) ── -->
-          <!-- Outer coast: starting from Farewell Spit tip (NW), going clockwise -->
-          <path clip-path="url(#mapClip)" d="
-            M 60 95
-            C 72 80, 88 72, 105 68
-            C 118 65, 128 60, 132 52
-            C 136 44, 130 36, 125 30
-            C 138 22, 155 18, 168 20
-            C 178 22, 182 28, 180 36
-            C 185 32, 195 26, 210 22
-            C 225 18, 242 16, 258 20
-            C 272 24, 285 32, 295 44
-            C 308 58, 316 75, 322 92
-            C 328 108, 330 125, 326 140
-            C 320 158, 308 168, 298 178
-            C 290 186, 285 192, 282 200
-            C 288 196, 298 192, 308 194
-            C 316 196, 322 202, 326 210
-            C 332 222, 334 238, 330 254
-            C 326 270, 316 284, 304 296
-            C 292 308, 278 318, 262 326
-            C 246 334, 228 340, 210 344
-            C 192 348, 174 348, 158 344
-            C 142 340, 128 332, 116 320
-            C 104 308, 96 292, 92 276
-            C 88 260, 88 244, 92 228
-            C 96 212, 104 198, 108 184
-            C 112 170, 110 156, 104 144
-            C 98 132, 88 122, 78 112
-            C 68 102, 60 95, 60 95
-            Z
-          " fill="rgba(22,22,18,0.9)" stroke="rgba(232,137,30,0.25)" stroke-width="1.5"/>
+          <!-- Picton (at the top of Queen Charlotte Sound) -->
+          <circle cx="340" cy="108" r="3.5" fill="rgba(232,137,30,0.75)"/>
+          <text x="350" y="106" font-family="'Barlow Condensed', sans-serif" font-size="9" fill="rgba(240,234,216,0.65)" letter-spacing="0.3">Picton</text>
 
-          <!-- ── MARLBOROUGH SOUNDS (complex inlets on north coast) ── -->
-          <!-- Queen Charlotte Sound -->
-          <path d="M 298 178 C 304 172, 312 166, 318 160 C 322 154, 320 148, 315 144 C 310 140, 303 140, 298 144 C 293 148, 290 154, 288 160 C 286 166, 285 172, 285 178" stroke="rgba(232,137,30,0.15)" stroke-width="1" fill="rgba(13,13,11,0.8)"/>
-          <!-- Pelorus Sound / Kenepuru -->
-          <path d="M 282 190 C 290 184, 300 180, 308 184 C 314 188, 316 196, 312 202 C 308 208, 300 210, 294 208" stroke="rgba(232,137,30,0.12)" stroke-width="1" fill="rgba(13,13,11,0.8)"/>
-          <!-- Sounds water fill suggestion -->
-          <path d="M 295 155 C 302 148, 312 144, 320 148 C 328 152, 330 162, 326 170 C 322 178, 314 182, 306 180 C 298 178, 292 172, 292 165 Z" fill="rgba(13,13,11,0.6)" stroke="rgba(232,137,30,0.1)" stroke-width="0.5"/>
+          <!-- Nelson (top-left area) -->
+          <circle cx="155" cy="92" r="4" fill="rgba(200,101,26,0.85)"/>
+          <text x="163" y="90" font-family="'Barlow Condensed', sans-serif" font-size="9" fill="rgba(240,234,216,0.7)" letter-spacing="0.3">Nelson</text>
 
-          <!-- ── GOLDEN BAY dent ── -->
-          <path d="M 125 30 C 130 36, 128 44, 122 50 C 116 56, 108 60, 102 64 C 96 68, 88 72, 82 78" stroke="rgba(232,137,30,0.15)" stroke-width="1" fill="none"/>
+          <!-- Region labels -->
+          <text x="295" y="210" font-family="'Barlow Condensed', sans-serif" font-size="11" font-weight="700" fill="rgba(232,137,30,0.7)" letter-spacing="1.5" text-anchor="middle">MARLBOROUGH</text>
+          <text x="150" y="165" font-family="'Barlow Condensed', sans-serif" font-size="10" font-weight="700" fill="rgba(200,101,26,0.65)" letter-spacing="1" text-anchor="middle">TASMAN</text>
+          <text x="220" y="360" font-family="'Barlow Condensed', sans-serif" font-size="10" font-weight="700" fill="rgba(200,101,26,0.45)" letter-spacing="1" text-anchor="middle">CANTERBURY</text>
 
-          <!-- ── MARLBOROUGH REGION HIGHLIGHT ── -->
-          <path d="
-            M 210 22
-            C 230 18, 250 18, 268 24
-            C 282 30, 294 42, 304 56
-            C 314 70, 320 88, 322 106
-            C 324 122, 320 138, 312 152
-            C 305 164, 295 172, 285 180
-            C 278 185, 272 189, 265 192
-            C 255 195, 244 194, 235 190
-            C 224 185, 215 176, 208 166
-            C 200 155, 196 142, 194 129
-            C 192 115, 193 100, 198 88
-            C 202 76, 208 50, 210 22
-            Z
-          " fill="rgba(232,137,30,0.14)" stroke="rgba(232,137,30,0.35)" stroke-width="1"/>
-
-          <!-- ── TASMAN REGION HIGHLIGHT ── -->
-          <path d="
-            M 125 30
-            C 138 22, 155 18, 168 20
-            C 178 22, 185 30, 185 40
-            C 184 52, 178 64, 170 74
-            C 162 84, 150 92, 138 98
-            C 126 104, 112 108, 100 108
-            C 88 108, 78 104, 72 96
-            C 66 88, 68 76, 74 66
-            C 80 56, 90 48, 100 40
-            C 108 34, 118 28, 125 30
-            Z
-          " fill="rgba(200,101,26,0.10)" stroke="rgba(200,101,26,0.28)" stroke-width="1"/>
-
-          <!-- ── NELSON BAYS area ── -->
-          <path d="M 168 20 C 175 28, 178 38, 174 48 C 170 58, 162 65, 153 68 C 144 71, 135 68, 128 62" fill="rgba(200,101,26,0.08)" stroke="rgba(200,101,26,0.2)" stroke-width="0.8"/>
-
-          <!-- ── REGION LABELS ── -->
-          <text x="262" y="110" font-family="'Barlow Condensed', sans-serif" font-size="12" font-weight="700" fill="#e8891e" letter-spacing="1.5" text-anchor="middle">MARLBOROUGH</text>
-          <text x="138" y="78" font-family="'Barlow Condensed', sans-serif" font-size="10" font-weight="700" fill="rgba(200,101,26,0.85)" letter-spacing="1" text-anchor="middle">TASMAN</text>
-          <!-- Canterbury label lower -->
-          <text x="215" y="295" font-family="'Barlow Condensed', sans-serif" font-size="10" font-weight="700" fill="rgba(200,101,26,0.55)" letter-spacing="1" text-anchor="middle">CANTERBURY</text>
-
-          <!-- ── CITY DOTS ── -->
-          <!-- Blenheim -->
-          <circle cx="256" cy="155" r="5" fill="#e8891e"/>
-          <circle cx="256" cy="155" r="9" fill="none" stroke="#e8891e" stroke-width="1" opacity="0.3"/>
-          <text x="268" y="153" font-family="'Barlow Condensed', sans-serif" font-size="10" font-weight="600" fill="rgba(240,234,216,0.85)" letter-spacing="0.5">Blenheim</text>
-
-          <!-- Picton (top of Sounds) -->
-          <circle cx="295" cy="148" r="3.5" fill="rgba(232,137,30,0.7)"/>
-          <text x="302" y="146" font-family="'Barlow Condensed', sans-serif" font-size="9" fill="rgba(240,234,216,0.6)" letter-spacing="0.3">Picton</text>
-
-          <!-- Nelson -->
-          <circle cx="153" cy="75" r="4" fill="rgba(200,101,26,0.8)"/>
-          <text x="160" y="73" font-family="'Barlow Condensed', sans-serif" font-size="9" fill="rgba(240,234,216,0.65)" letter-spacing="0.3">Nelson</text>
-
-          <!-- Farewell Spit label -->
-          <text x="95" y="55" font-family="'Barlow Condensed', sans-serif" font-size="8" fill="rgba(200,101,26,0.5)" letter-spacing="0.5" text-anchor="middle">Farewell Spit</text>
-          <path d="M 95 58 L 108 66" stroke="rgba(200,101,26,0.3)" stroke-width="0.8"/>
-
-          <!-- ── COMPASS ── -->
-          <g transform="translate(36, 440)">
-            <line x1="0" y1="-16" x2="0" y2="16" stroke="rgba(232,137,30,0.35)" stroke-width="1"/>
-            <line x1="-16" y1="0" x2="16" y2="0" stroke="rgba(232,137,30,0.35)" stroke-width="1"/>
-            <polygon points="0,-16 -3.5,-7 3.5,-7" fill="#e8891e"/>
-            <text x="0" y="-20" font-family="'Barlow Condensed', sans-serif" font-size="8" fill="#e8891e" text-anchor="middle" letter-spacing="1">N</text>
+          <!-- Compass -->
+          <g transform="translate(30, 455)">
+            <line x1="0" y1="-14" x2="0" y2="14" stroke="rgba(232,137,30,0.4)" stroke-width="1"/>
+            <line x1="-14" y1="0" x2="14" y2="0" stroke="rgba(232,137,30,0.4)" stroke-width="1"/>
+            <polygon points="0,-14 -3,-6 3,-6" fill="#e8891e"/>
+            <text x="0" y="-18" font-family="'Barlow Condensed', sans-serif" font-size="8" fill="#e8891e" text-anchor="middle" letter-spacing="1">N</text>
           </g>
-
-          <!-- ── COOK STRAIT label ── -->
-          <text x="340" y="130" font-family="'Barlow Condensed', sans-serif" font-size="8" fill="rgba(232,137,30,0.3)" letter-spacing="0.5" text-anchor="middle">Cook Strait</text>
         </svg>
+        </div>
       </div>
     </div>
   </section>
