@@ -1175,38 +1175,22 @@
           <p style="margin-top: 0.8rem;"><a href="#contact" style="color: var(--amber); text-decoration: none; font-weight: 500;">Get in touch</a> to confirm availability in your area.</p>
         </div>
       </div>
-      <div class="fade-up" style="position: relative; max-width: 400px;">
-        <div style="position: relative; display: inline-block; width: 100%;">
-          <img src="map.png" alt="Top of the South Island — Marlborough, Tasman, Canterbury service area" style="width: 100%; display: block; filter: invert(1) sepia(1) saturate(2) hue-rotate(10deg) brightness(0.75); opacity: 0.7; mix-blend-mode: normal;" />
-          <!-- Labels & dots overlaid via absolute SVG -->
-          <svg viewBox="0 0 414 497" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" xmlns="http://www.w3.org/2000/svg">
-          <!-- City dots & labels — coordinates matched to the actual image -->
-          <!-- Blenheim (mid-right, inland from the Sounds) -->
-          <circle cx="310" cy="148" r="5" fill="#e8891e"/>
-          <circle cx="310" cy="148" r="9" fill="none" stroke="#e8891e" stroke-width="1" opacity="0.3"/>
-          <text x="322" y="146" font-family="'Barlow Condensed', sans-serif" font-size="11" font-weight="700" fill="rgba(240,234,216,0.9)" letter-spacing="0.5">Blenheim</text>
+      <div class="fade-up" style="position: relative; max-width: 480px; overflow: hidden;">
+        <div style="position: relative; display: inline-block; width: 100%; overflow: visible;">
+          <img src="map.png"
+               alt="Top of the South Island — Marlborough, Tasman, Canterbury service area"
+               style="width: 100%; display: block; opacity: 0.9;" />
+          <!-- SVG overlay — viewBox matches image dimensions 1250×1426 -->
+          <svg viewBox="0 0 1250 1426" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" xmlns="http://www.w3.org/2000/svg">
 
-          <!-- Picton (at the top of Queen Charlotte Sound) -->
-          <circle cx="340" cy="108" r="3.5" fill="rgba(232,137,30,0.75)"/>
-          <text x="350" y="106" font-family="'Barlow Condensed', sans-serif" font-size="9" fill="rgba(240,234,216,0.65)" letter-spacing="0.3">Picton</text>
-
-          <!-- Nelson (top-left area) -->
-          <circle cx="155" cy="92" r="4" fill="rgba(200,101,26,0.85)"/>
-          <text x="163" y="90" font-family="'Barlow Condensed', sans-serif" font-size="9" fill="rgba(240,234,216,0.7)" letter-spacing="0.3">Nelson</text>
-
-          <!-- Region labels -->
-          <text x="295" y="210" font-family="'Barlow Condensed', sans-serif" font-size="11" font-weight="700" fill="rgba(232,137,30,0.7)" letter-spacing="1.5" text-anchor="middle">MARLBOROUGH</text>
-          <text x="150" y="165" font-family="'Barlow Condensed', sans-serif" font-size="10" font-weight="700" fill="rgba(200,101,26,0.65)" letter-spacing="1" text-anchor="middle">TASMAN</text>
-          <text x="220" y="360" font-family="'Barlow Condensed', sans-serif" font-size="10" font-weight="700" fill="rgba(200,101,26,0.45)" letter-spacing="1" text-anchor="middle">CANTERBURY</text>
-
-          <!-- Compass -->
-          <g transform="translate(30, 455)">
-            <line x1="0" y1="-14" x2="0" y2="14" stroke="rgba(232,137,30,0.4)" stroke-width="1"/>
-            <line x1="-14" y1="0" x2="14" y2="0" stroke="rgba(232,137,30,0.4)" stroke-width="1"/>
-            <polygon points="0,-14 -3,-6 3,-6" fill="#e8891e"/>
-            <text x="0" y="-18" font-family="'Barlow Condensed', sans-serif" font-size="8" fill="#e8891e" text-anchor="middle" letter-spacing="1">N</text>
-          </g>
-        </svg>
+            <!-- Compass — bottom left -->
+            <g transform="translate(72, 1360)">
+              <line x1="0" y1="-34" x2="0" y2="34" stroke="#e8891e" stroke-width="2" opacity="0.5"/>
+              <line x1="-34" y1="0" x2="34" y2="0" stroke="#e8891e" stroke-width="2" opacity="0.5"/>
+              <polygon points="0,-34 -8,-14 8,-14" fill="#e8891e"/>
+              <text x="0" y="-42" font-family="'Barlow Condensed', sans-serif" font-size="22" fill="#e8891e" text-anchor="middle" letter-spacing="2">N</text>
+            </g>
+          </svg>
         </div>
       </div>
     </div>
