@@ -561,67 +561,31 @@
     .vehicles-desc p + p { margin-top: 1rem; }
     .vehicles-desc strong { color: var(--cream); }
 
-    /* ── AREA ── */
-    #area {
-      background: var(--black);
-    }
-
-    .area-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6vw;
-      align-items: start;
-    }
-
-    .area-regions {
-      display: grid;
-      gap: 1rem;
-    }
-
-    .region-row {
+    /* ── AREA BANNER ── */
+    .area-banner {
+      background: var(--dark);
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      padding: 1.6rem 6vw;
       display: flex;
       align-items: center;
       gap: 1.2rem;
-      padding: 1.2rem 1.4rem;
-      background: var(--mid);
-      border: 1px solid rgba(255,255,255,0.04);
-      transition: border-color 0.2s;
     }
-    .region-row:hover { border-color: rgba(232,137,30,0.3); }
-
-    .region-dot {
-      width: 10px; height: 10px;
-      border-radius: 50%;
-      background: var(--amber);
+    .area-banner-icon {
+      width: 20px;
+      height: 20px;
+      color: var(--amber);
       flex-shrink: 0;
     }
-    .region-dot.secondary { background: var(--rust); opacity: 0.6; }
-
-    .region-name {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1rem;
-      font-weight: 600;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--white);
-    }
-    .region-tag {
-      margin-left: auto;
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--grey);
-    }
-
-    .area-note {
-      margin-top: 2rem;
-    }
-    .area-note p {
-      font-size: 0.92rem;
+    .area-banner p {
+      font-size: 0.96rem;
       font-weight: 300;
-      color: var(--grey);
-      line-height: 1.7;
+      color: var(--light-grey);
+      line-height: 1.6;
+    }
+    .area-banner strong {
+      color: var(--cream);
+      font-weight: 600;
     }
 
     /* ── REVIEWS ── */
@@ -926,7 +890,6 @@
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#vehicles">Vehicles</a></li>
-      <li><a href="#area">Service Area</a></li>
     </ul>
     <a href="#contact" class="nav-cta">Get a Quote</a>
     <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
@@ -1181,44 +1144,10 @@
 
   <div class="section-divider"></div>
 
-  <!-- SERVICE AREA -->
-  <section id="area">
-    <div class="area-inner">
-      <div class="fade-up">
-        <p class="section-label">Where We Work</p>
-        <h2 class="section-title">Service Area</h2>
-        <div class="area-regions" style="margin-top: 2rem;">
-          <div class="region-row">
-            <div class="region-dot"></div>
-            <span class="region-name">Marlborough</span>
-            <span class="region-tag">Service Region</span>
-          </div>
-        </div>
-        <div class="area-note">
-          <p>Based in Marlborough and servicing the region. We're happy to discuss travel for larger jobs or ongoing commercial contracts.</p>
-          <p style="margin-top: 0.8rem;"><a href="#contact" style="color: var(--amber); text-decoration: none; font-weight: 500;">Get in touch</a> to confirm availability in your area.</p>
-        </div>
-      </div>
-      <div class="fade-up" style="position: relative; max-width: 480px; overflow: hidden;">
-        <div style="position: relative; display: inline-block; width: 100%; overflow: visible;">
-          <img src="map.png"
-               alt="Top of the South Island — Marlborough, Tasman, Canterbury service area"
-               style="width: 100%; display: block; opacity: 0.9;" />
-          <!-- SVG overlay — viewBox matches image dimensions 1250×1426 -->
-          <svg viewBox="0 0 1250 1426" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" xmlns="http://www.w3.org/2000/svg">
-
-            <!-- Compass — bottom left -->
-            <g transform="translate(72, 1360)">
-              <line x1="0" y1="-34" x2="0" y2="34" stroke="#e8891e" stroke-width="2" opacity="0.5"/>
-              <line x1="-34" y1="0" x2="34" y2="0" stroke="#e8891e" stroke-width="2" opacity="0.5"/>
-              <polygon points="0,-34 -8,-14 8,-14" fill="#e8891e"/>
-              <text x="0" y="-42" font-family="'Barlow Condensed', sans-serif" font-size="22" fill="#e8891e" text-anchor="middle" letter-spacing="2">N</text>
-            </g>
-          </svg>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div class="area-banner fade-up" id="area">
+    <svg class="area-banner-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+    <p><strong>Based in Marlborough</strong> — that's our main patch. If you're nearby and not sure whether we cover your area, give us a call and we'll see what we can do.</p>
+  </div>
 
   <div class="section-divider"></div>
 
@@ -1322,7 +1251,6 @@
       <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#vehicles">Vehicles</a></li>
-      <li><a href="#area">Area</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
     <p class="footer-copy">© 2026 All Works Marlborough · Marlborough, NZ</p>
@@ -1335,7 +1263,7 @@
         if (e.isIntersecting) {
           e.target.classList.add('visible');
           // stagger children
-          e.target.querySelectorAll('.service-card, .highlight-card, .review-card, .region-row').forEach((el, i) => {
+          e.target.querySelectorAll('.service-card, .highlight-card, .review-card').forEach((el, i) => {
             el.style.transitionDelay = `${i * 80}ms`;
             el.classList.add('fade-up', 'visible');
           });
@@ -1375,7 +1303,7 @@
           padding: 1.5rem 6vw 2rem;
           display: flex; flex-direction: column; gap: 1.2rem;
         `;
-        ['About', 'Services', 'Vehicles', 'Area', 'Contact'].forEach(label => {
+        ['About', 'Services', 'Vehicles', 'Contact'].forEach(label => {
           const a = document.createElement('a');
           a.href = `#${label.toLowerCase()}`;
           a.textContent = label;
